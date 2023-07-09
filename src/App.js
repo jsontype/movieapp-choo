@@ -21,6 +21,11 @@ export default function App() {
     return (
       <div key={item.id}>
         <div>{item.title}</div>
+        <img
+          className="movieImage"
+          src={item.large_cover_image}
+          alt={item.summary}
+        ></img>
       </div>
     )
   })
