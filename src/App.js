@@ -24,7 +24,7 @@ export default function App() {
         <img
           className="movieImage"
           src={item.large_cover_image}
-          alt={item.title}
+          alt={item.summary}
         ></img>
       </div>
     )
