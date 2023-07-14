@@ -2,6 +2,11 @@
   margin: 20px;
 }
 
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .movieImage {
   width: 300px;
 }
