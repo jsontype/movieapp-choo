@@ -28,6 +28,9 @@ export default function App() {
         >
           평점 : {item.rating} / 10
         </div>
+        <div>
+          상영시간 : {parseInt(item.runtime / 60)}시간 {item.runtime % 60}분
+        </div>
         <img
           className="movieImage"
           src={item.large_cover_image}
