@@ -1,11 +1,6 @@
-import { useState } from "react"
 import "./style.css"
 
-export default function Counter() {
-  // JS
-  const [count, setCount] = useState(0)
-
-  // XML
+export default function Counter({ count, setCount }) {
   return (
     <>
       <div className="title">카운터 앱</div>
