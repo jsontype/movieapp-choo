@@ -21,6 +21,16 @@ export default function App() {
     return (
       <div key={item.id}>
         <div>{item.title}</div>
+        <div
+          className={
+            item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
+          }
+        >
+          평점 : {item.rating} / 10
+        </div>
+        <div>
+          상영시간 : {parseInt(item.runtime / 60)}시간 {item.runtime % 60}분
+        </div>
         <img
           className="movieImage"
           src={item.large_cover_image}
