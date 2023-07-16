@@ -8,7 +8,7 @@ import "./App.css"
 export default function App() {
   const [menu, setMenu] = useState("movies")
 
-  const onClickMenu = (text) => {
+  const onClickMenu = (text: string) => {
     setMenu(text)
   }
 
