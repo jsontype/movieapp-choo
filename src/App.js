@@ -20,7 +20,7 @@ export default function App() {
   const render = movies.map((item) => {
     return (
       <div key={item.id}>
-        <div>{item.title}</div>
+        <div className={"title"}>{item.title}</div>
         <div
           className={
             item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
