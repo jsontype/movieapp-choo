@@ -1,0 +1,21 @@
+.title {
+  margin-top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.movieImage {
+  width: 300px;
+}
+
+.good {
+  color: blue;
+}
+
+.soso {
+  color: orange;
+}
+
+.bad {
+  color: red;
+}
