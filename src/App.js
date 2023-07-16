@@ -33,7 +33,7 @@ export default function App() {
         <div>
           상영시간 : {parseInt(item.runtime / 60)}시간 {item.runtime % 60}분
         </div>
-        <div>장르 : {item.genres.join(",")}</div>
+        <div>장르 : {item.genres.join(", ")}</div>
         <div>
           줄거리 :{" "}
           {item.summary.length > 100
