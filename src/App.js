@@ -31,6 +31,12 @@ export default function App() {
         <div>
           상영시간 : {parseInt(item.runtime / 60)}시간 {item.runtime % 60}분
         </div>
+        <div>
+          줄거리 :{" "}
+          {item.summary.length > 100
+            ? `${item.summary.substring(0, 99)} ...`
+            : item.summary}
+        </div>
         <img
           className="movieImage"
           src={item.large_cover_image}
