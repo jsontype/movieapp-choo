@@ -6,7 +6,8 @@ import Counter from "./components/Counter"
 import "./App.css"
 
 export default function App() {
-  const [menu, setMenu] = useState("movies")
+  const [menu, setMenu] = useState<string>("movies")
+  const [count, setCount] = useState<number>(0)
 
   const onClickMenu = (text: string) => {
     setMenu(text)
@@ -52,7 +53,7 @@ export default function App() {
       {menu === "movies" && <Movies />}
       {menu === "todos" && <Todos />}
       {menu === "news" && <News />}
-      {menu === "counter" && <Counter />}
+      {menu === "counter" && <Counter count={count} setCount={setCount} />}
     </div>
   )
 }
