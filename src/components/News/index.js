@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./style.css"
 
-export default function Index() {
+export default function News() {
   const [newsList, setNewsList] = useState([])
 
   const url = "https://api.hnpwa.com/v0/news.json"
