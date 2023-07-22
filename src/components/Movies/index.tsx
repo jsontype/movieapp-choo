@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react"
 import "./style.css"
 
+type MoviesItemProps = {
+  id: number
+  title: string
+  rating: number
+  runtime: number
+  genres: string[]
+  summary: string
+  large_cover_image: string
+}
+
 export default function Movies() {
   const [movies, setMovies] = useState([])
 
@@ -17,7 +27,7 @@ export default function Movies() {
 
   console.log(movies)
 
-  const render = movies.map((item) => {
+  const render = movies.map((item: MoviesItemProps) => {
     return (
       <div key={item.id}>
         <div className={"title"}>
@@ -31,7 +41,7 @@ export default function Movies() {
           평점 : {item.rating} / 10
         </div>
         <div>
-          상영시간 : {parseInt(item.runtime / 60)}시간 {item.runtime % 60}분
+          상영시간 : {item.runtime / 60}시간 {item.runtime % 60}분
         </div>
         <div>장르 : {item.genres.join(", ")}</div>
         <div>
