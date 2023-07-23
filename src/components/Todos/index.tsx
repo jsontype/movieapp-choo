@@ -1,5 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, SetStateAction } from "react"
 import "./style.css"
+
+type TodosItemProps = {
+  id: number
+  completed: boolean
+  title: string
+  userId: 1
+}
 
 export default function Todos() {
   const [todos, setTodos] = useState([])
@@ -9,13 +16,13 @@ export default function Todos() {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
       .then((json) => {
-        const result = json.filter((item) => item.userId === 1)
+        const result = json.filter((item: TodosItemProps) => item.userId === 1)
         setTodos(result)
       })
   }, [])
 
-  const onchange = (id) => {
-    const result = todos.map((item) => {
+  const onchange = (id: number) => {
+    const result: any = todos.map((item: TodosItemProps) => {
       if (item.id === id) {
         item.completed = !item.completed
       }
@@ -24,27 +31,28 @@ export default function Todos() {
     setTodos(result)
   }
 
-  const onDelete = (id) => {
-    const result = todos.filter((item) => item.id !== id)
+  const onDelete = (id: number) => {
+    const result = todos.filter((item: TodosItemProps) => item.id !== id)
     setTodos(result)
   }
 
-  const onChange = (e) => {
+  const onChange = (e: { target: { value: SetStateAction<string> } }) => {
     setText(e.target.value)
   }
 
-  const onCreate = (e) => {
+  const onCreate = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    const newTodo = {
+    const newTodo: TodosItemProps = {
       id: todos.length + 1,
       title: text,
       completed: false,
       userId: 1,
     }
-    setTodos([...todos, newTodo])
+    const result: any = [...todos, newTodo]
+    setTodos(result)
   }
 
-  const render = todos.map((item) => {
+  const render = todos.map((item: TodosItemProps) => {
     return (
       <div key={item.id}>
         <span>
