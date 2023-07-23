@@ -1,9 +1,9 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import Movies from "./components/Movies"
 import Todos from "./components/Todos"
 import News from "./components/News"
 import Counter from "./components/Counter"
-import "./App.css"
+import "./App.scss"
 
 export default function App() {
   const [menu, setMenu] = useState("movies")
