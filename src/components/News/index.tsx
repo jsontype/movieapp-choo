@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react"
 import "./style.css"
 
+type NewsItemProps = {
+  url: string
+  title: string
+  comments_count: number
+  user: string
+}
+
 export default function News() {
   const [newsList, setNewsList] = useState([])
 
-  const url = "https://api.hnpwa.com/v0/news.json"
-
   useEffect(() => {
-    fetch(url)
+    fetch("https://api.hnpwa.com/v0/news.json")
       .then((res) => res.json())
       .then((json) => setNewsList(json))
   }, [])
 
   console.log(newsList)
 
-  const render = newsList.map((news, index) => {
+  const render = newsList.map((news: NewsItemProps, index: number) => {
     return (
       <div key={index}>
         <a
