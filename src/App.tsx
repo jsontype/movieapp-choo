@@ -6,13 +6,8 @@ import Counter from "./components/Counter"
 import "./App.css"
 
 export default function App() {
-<<<<<<< HEAD
-  const [menu, setMenu] = useState<string>("movies")
-  const [count, setCount] = useState<number>(0)
-=======
   const [menu, setMenu] = useState("movies")
   const [count, setCount] = useState(0)
->>>>>>> master
 
   const onClickMenu = (text: string) => {
     setMenu(text)
