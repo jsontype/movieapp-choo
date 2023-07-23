@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import "./style.scss"
+import styles from "./style.module.scss"
 
 export default function Todos() {
   const [todos, setTodos] = useState([])
@@ -61,7 +61,7 @@ export default function Todos() {
   return (
     <>
       {" "}
-      <div className="title">TODO 앱</div>
+      <div className={styles.title}>TODO 앱</div>
       <form onSubmit={onCreate}>
         <input
           type="text"
