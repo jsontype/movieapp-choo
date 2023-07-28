@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.scss"
 
 type CounterProps = {
   count: number

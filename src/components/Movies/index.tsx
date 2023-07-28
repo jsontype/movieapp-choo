@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import "./style.css"
+import "./style.scss"
 
 type MoviesItemProps = {
   id: number

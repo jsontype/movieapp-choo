@@ -1,5 +1,5 @@
 import { useState, useEffect, SetStateAction } from "react"
-import "./style.css"
+import "./style.scss"
 
 type TodosItemProps = {
   id: number
