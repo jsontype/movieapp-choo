@@ -5,8 +5,12 @@
 .menu {
   padding: 10px;
   margin-right: 10px;
+  text-decoration: none;
 }
 
+.menu:hover {
+  color: pink;
+}
 .logo {
   font-size: 20px;
   font-weight: bold;
