@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
 import styles from "./style.module.scss"
 
 type MoviesItemProps = {
@@ -12,20 +13,31 @@ type MoviesItemProps = {
 }
 
 export default function Movies() {
+  const [searchParams] = useSearchParams()
+  const sortby = searchParams.get("sortby")
+  console.log("sortby: ", sortby)
+  const [sort, setSort] = useState(sortby || "rating")
+
   const [movies, setMovies] = useState([])
 
   // const url = "https://yts.mx/api/v2/list_movies.json"
-  const url = "https://yts.mx/api/v2/list_movies.json?sort_by=rating"
 
   useEffect(() => {
+    const url =
+      sort === "download_count"
+        ? "https://yts.mx/api/v2/list_movies.json?sort_by=download_count"
+        : sort === "title"
+        ? "https://yts.mx/api/v2/list_movies.json?sort_by=title"
+        : sort === "year"
+        ? "https://yts.mx/api/v2/list_movies.json?sort_by=year"
+        : "https://yts.mx/api/v2/list_movies.json?sort_by=rating"
+
     fetch(url)
       .then((res) => res.json())
       .then((json) => {
         setMovies(json.data.movies)
       })
-  }, [])
-
-  console.log(movies)
+  }, [sort])
 
   const render = movies.map((item: MoviesItemProps) => {
     return (
@@ -64,6 +76,10 @@ export default function Movies() {
   return (
     <>
       <div className={styles.title}>무비 앱</div>
+      <button onClick={() => setSort("rating")}>평점순</button>
+      <button onClick={() => setSort("download_count")}>다운로드순</button>
+      <button onClick={() => setSort("title")}>제목순</button>
+      <button onClick={() => setSort("year")}>연도순</button>
       <div>{render}</div>
     </>
   )
