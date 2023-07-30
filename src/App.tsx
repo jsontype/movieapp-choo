@@ -13,16 +13,16 @@ export default function App() {
     <div className={styles.App}>
       <div>
         <span className={styles.logo}>General App</span>
-        <Link to="/movies" className="menu">
+        <Link to="/movies" className={styles.menu}>
           Movies
         </Link>
-        <Link to="/todos" className="menu">
+        <Link to="/todos" className={styles.menu}>
           Todos
         </Link>
-        <Link to="/news" className="menu">
+        <Link to="/news" className={styles.menu}>
           News
         </Link>
-        <Link to="/counter" className="menu">
+        <Link to="/counter" className={styles.menu}>
           Counter
         </Link>
       </div>

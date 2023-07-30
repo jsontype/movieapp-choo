@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect, memo, useMemo } from "react"
 import { useSearchParams } from "react-router-dom"
 import styles from "./style.module.scss"
 
@@ -12,15 +12,11 @@ type MoviesItemProps = {
   large_cover_image: string
 }
 
-export default function Movies() {
+function Movies() {
   const [searchParams] = useSearchParams()
-  const sortby = searchParams.get("sortby")
-  console.log("sortby: ", sortby)
+  const sortby = useMemo(() => searchParams.get("sortby"), [searchParams])
   const [sort, setSort] = useState(sortby || "rating")
-
   const [movies, setMovies] = useState([])
-
-  // const url = "https://yts.mx/api/v2/list_movies.json"
 
   useEffect(() => {
     const url =
@@ -39,39 +35,43 @@ export default function Movies() {
       })
   }, [sort])
 
-  const render = movies.map((item: MoviesItemProps) => {
-    return (
-      <div key={item.id}>
-        <div className={styles.title}>
-          {item.title} {item.rating >= 9 && "👍"}
-        </div>
-        <div
-          className={
-            styles[
-              item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
-            ]
-          }
-        >
-          평점 : {item.rating} / 10
-        </div>
-        <div>
-          상영시간 : {item.runtime / 60}시간 {item.runtime % 60}분
-        </div>
-        <div>장르 : {item.genres.join(", ")}</div>
-        <div>
-          줄거리 :{" "}
-          {item.summary.length > 100
-            ? `${item.summary.substring(0, 99)} ...`
-            : item.summary}
-        </div>
-        <img
-          className={styles.movieImage}
-          src={item.large_cover_image}
-          alt={item.summary}
-        ></img>
-      </div>
-    )
-  })
+  const render = useMemo(
+    () =>
+      movies.map((item: MoviesItemProps) => {
+        return (
+          <div key={item.id}>
+            <div className={styles.title}>
+              {item.title} {item.rating >= 9 && "👍"}
+            </div>
+            <div
+              className={
+                styles[
+                  item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
+                ]
+              }
+            >
+              평점 : {item.rating} / 10
+            </div>
+            <div>
+              상영시간 : {item.runtime / 60}시간 {item.runtime % 60}분
+            </div>
+            <div>장르 : {item.genres.join(", ")}</div>
+            <div>
+              줄거리 :{" "}
+              {item.summary.length > 100
+                ? `${item.summary.substring(0, 99)} ...`
+                : item.summary}
+            </div>
+            <img
+              className={styles.movieImage}
+              src={item.large_cover_image}
+              alt={item.summary}
+            ></img>
+          </div>
+        )
+      }),
+    [movies]
+  )
 
   return (
     <>
@@ -84,3 +84,5 @@ export default function Movies() {
     </>
   )
 }
+
+export default memo(Movies)

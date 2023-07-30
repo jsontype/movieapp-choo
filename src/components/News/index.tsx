@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState, memo, useMemo } from "react"
 import styles from "./style.module.scss"
 
 type NewsItemProps = {
@@ -8,7 +8,7 @@ type NewsItemProps = {
   user: string
 }
 
-export default function News() {
+function News() {
   const [newsList, setNewsList] = useState([])
 
   useEffect(() => {
@@ -17,36 +17,38 @@ export default function News() {
       .then((json) => setNewsList(json))
   }, [])
 
-  console.log(newsList)
-
-  const render = newsList.map((news: NewsItemProps, index: number) => {
-    return (
-      <div key={index}>
-        <a
-          href={news.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.newsTitle}
-        >
-          {news.title}
-        </a>
-        <span
-          className={
-            styles[
-              news.comments_count >= 100
-                ? "newsComments_countHigh"
-                : news.comments_count >= 50
-                ? "newsComments_countLow"
-                : "newsComments_count"
-            ]
-          }
-        >
-          comments_count: {news.comments_count}
-        </span>
-        <div className={styles.newsUser}>user: {news.user}</div>
-      </div>
-    )
-  })
+  const render = useMemo(
+    () =>
+      newsList.map((news: NewsItemProps, index: number) => {
+        return (
+          <div key={index}>
+            <a
+              href={news.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.newsTitle}
+            >
+              {news.title}
+            </a>
+            <span
+              className={
+                styles[
+                  news.comments_count >= 100
+                    ? "newsComments_countHigh"
+                    : news.comments_count >= 50
+                    ? "newsComments_countLow"
+                    : "newsComments_count"
+                ]
+              }
+            >
+              comments_count: {news.comments_count}
+            </span>
+            <div className={styles.newsUser}>user: {news.user}</div>
+          </div>
+        )
+      }),
+    [newsList]
+  )
 
   return (
     <>
@@ -55,3 +57,5 @@ export default function News() {
     </>
   )
 }
+
+export default memo(News)

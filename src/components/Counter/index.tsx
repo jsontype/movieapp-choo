@@ -1,3 +1,4 @@
+import { memo } from "react"
 import styles from "./style.module.scss"
 
 type CounterProps = {
@@ -5,7 +6,7 @@ type CounterProps = {
   setCount: (count: number) => void
 }
 
-export default function Counter({ count, setCount }: CounterProps) {
+function Counter({ count, setCount }: CounterProps) {
   return (
     <>
       <div className={styles.title}>카운터 앱</div>
@@ -15,3 +16,5 @@ export default function Counter({ count, setCount }: CounterProps) {
     </>
   )
 }
+
+export default memo(Counter)
