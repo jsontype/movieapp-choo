@@ -1,0 +1,13 @@
+{
+  "title": "무비 앱",
+  "itemRating": "평점",
+  "itemRuntime": "상영시간",
+  "itemRuntimeHour": "시간",
+  "itemRuntimeMinute": "분",
+  "itemGenres": "장르",
+  "itemSummary": "줄거리",
+  "sortRating": "평점순",
+  "sortDownloadCount": "다운로드순",
+  "sortTitle": "제목순",
+  "sortYear": "연도순"
+}

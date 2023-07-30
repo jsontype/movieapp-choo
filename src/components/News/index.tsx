@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styles from "./style.module.scss"
+import { useTranslation } from "react-i18next"
 
 type NewsItemProps = {
   url: string
@@ -9,6 +10,8 @@ type NewsItemProps = {
 }
 
 export default function News() {
+  const { t } = useTranslation()
+
   const [newsList, setNewsList] = useState([])
 
   useEffect(() => {
@@ -41,16 +44,18 @@ export default function News() {
             ]
           }
         >
-          comments_count: {news.comments_count}
+          {t("news:itemCommentsCount")}: {news.comments_count}
         </span>
-        <div className={styles.newsUser}>user: {news.user}</div>
+        <div className={styles.newsUser}>
+          {t("news:itemUser")}: {news.user}
+        </div>
       </div>
     )
   })
 
   return (
     <>
-      <div className={styles.title}>뉴스 앱</div>
+      <div className={styles.title}>{t("news:title")}</div>
       <div>{render}</div>
     </>
   )

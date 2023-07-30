@@ -1,5 +1,6 @@
 import { useState, useEffect, SetStateAction } from "react"
 import styles from "./style.module.scss"
+import { useTranslation } from "react-i18next"
 
 type TodosItemProps = {
   id: number
@@ -9,6 +10,8 @@ type TodosItemProps = {
 }
 
 export default function Todos() {
+  const { t } = useTranslation()
+
   const [todos, setTodos] = useState([])
   const [text, setText] = useState("")
 
@@ -21,7 +24,7 @@ export default function Todos() {
       })
   }, [])
 
-  const onchange = (id: number) => {
+  const onClick = (id: number) => {
     const result: any = todos.map((item: TodosItemProps) => {
       if (item.id === id) {
         item.completed = !item.completed
@@ -57,7 +60,7 @@ export default function Todos() {
       <div key={item.id}>
         <span>
           # {item.id} / {item.title} /
-          <span onClick={() => onchange(item.id)}>
+          <span onClick={() => onClick(item.id)}>
             {item.completed ? "✅" : "[TODO]"}
           </span>
           <span onClick={() => onDelete(item.id)}>🗑️</span>
@@ -69,13 +72,13 @@ export default function Todos() {
   return (
     <>
       {" "}
-      <div className={styles.title}>TODO 앱</div>
+      <div className={styles.title}>{t("todos:title")}</div>
       <form onSubmit={onCreate}>
         <input
           type="text"
           value={text}
           onChange={onChange}
-          placeholder="할일을 입력해주세요."
+          placeholder={t("todos:itemPlaceholder")}
         />
         <input type="submit" value="Enter"></input>
       </form>
