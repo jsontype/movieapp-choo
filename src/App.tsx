@@ -3,7 +3,7 @@ import Movies from "./components/Movies"
 import Todos from "./components/Todos"
 import News from "./components/News"
 import Counter from "./components/Counter"
-import "./App.css"
+import styles from "./App.module.scss"
 
 export default function App() {
   const [menu, setMenu] = useState("movies")
@@ -14,11 +14,11 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className={styles.App}>
       <div>
-        <span className="logo">General App</span>
+        <span className={styles.logo}>General App</span>
         <span
-          className="menu"
+          className={styles.menu}
           onClick={() => {
             onClickMenu("movies")
           }}
@@ -26,7 +26,7 @@ export default function App() {
           Movies
         </span>
         <span
-          className="menu"
+          className={styles.menu}
           onClick={() => {
             onClickMenu("todos")
           }}
@@ -34,7 +34,7 @@ export default function App() {
           Todos
         </span>
         <span
-          className="menu"
+          className={styles.menu}
           onClick={() => {
             onClickMenu("counter")
           }}
@@ -42,7 +42,7 @@ export default function App() {
           Counter
         </span>
         <span
-          className="menu"
+          className={styles.menu}
           onClick={() => {
             onClickMenu("news")
           }}

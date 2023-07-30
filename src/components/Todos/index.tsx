@@ -1,5 +1,5 @@
 import { useState, useEffect, SetStateAction } from "react"
-import "./style.css"
+import styles from "./style.module.scss"
 
 type TodosItemProps = {
   id: number
@@ -69,7 +69,7 @@ export default function Todos() {
   return (
     <>
       {" "}
-      <div className="title">TODO 앱</div>
+      <div className={styles.title}>TODO 앱</div>
       <form onSubmit={onCreate}>
         <input
           type="text"
