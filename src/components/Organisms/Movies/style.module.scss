@@ -1,0 +1,55 @@
+@import "styles/global.scss";
+
+.title {
+  margin-top: $margin-xs;
+  font-size: $font-lg;
+  font-weight: bold;
+}
+
+.sortBtnContainer {
+  margin: 20px 0;
+  background: $light;
+  border: 1px solid $black;
+  border-radius: 5px;
+}
+
+.movieItemContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: $margin-xs;
+  padding: $margin-xs;
+  border: 1px solid $black;
+  border-radius: 5px;
+}
+
+.movieImageContainer {
+  border: 1px solid $black;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.movieTextContainer {
+  flex: 999;
+}
+
+.movieTitle {
+  font-size: $font-md;
+  font-weight: bold;
+}
+
+.movieImage {
+  width: 300px;
+}
+
+.good {
+  color: $blue;
+}
+
+.soso {
+  color: $orange;
+}
+
+.bad {
+  color: $red;
+}
