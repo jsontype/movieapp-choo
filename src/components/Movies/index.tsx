@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-import "./style.css"
 import { useSearchParams } from "react-router-dom"
+import styles from "./style.module.scss"
 
 type MoviesItemProps = {
   id: number
@@ -42,12 +42,14 @@ export default function Movies() {
   const render = movies.map((item: MoviesItemProps) => {
     return (
       <div key={item.id}>
-        <div className={"title"}>
+        <div className={styles.title}>
           {item.title} {item.rating >= 9 && "👍"}
         </div>
         <div
           className={
-            item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
+            styles[
+              item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
+            ]
           }
         >
           평점 : {item.rating} / 10
@@ -63,7 +65,7 @@ export default function Movies() {
             : item.summary}
         </div>
         <img
-          className="movieImage"
+          className={styles.movieImage}
           src={item.large_cover_image}
           alt={item.summary}
         ></img>
@@ -73,7 +75,7 @@ export default function Movies() {
 
   return (
     <>
-      <div className="title">무비 앱</div>
+      <div className={styles.title}>무비 앱</div>
       <button onClick={() => setSort("rating")}>평점순</button>
       <button onClick={() => setSort("download_count")}>다운로드순</button>
       <button onClick={() => setSort("title")}>제목순</button>

@@ -4,15 +4,15 @@ import Todos from "./components/Todos"
 import News from "./components/News"
 import Counter from "./components/Counter"
 import { Routes, Route, Link } from "react-router-dom"
-import "./App.css"
+import styles from "./App.module.scss"
 
 export default function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="app">
+    <div className={styles.App}>
       <div>
-        <span className="logo">General App</span>
+        <span className={styles.logo}>General App</span>
         <Link to="/movies" className="menu">
           Movies
         </Link>

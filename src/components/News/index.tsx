@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import "./style.css"
+import styles from "./style.module.scss"
 
 type NewsItemProps = {
   url: string
@@ -26,29 +26,31 @@ export default function News() {
           href={news.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="newsTitle"
+          className={styles.newsTitle}
         >
           {news.title}
         </a>
         <span
           className={
-            news.comments_count >= 100
-              ? "newsComments_countHigh"
-              : news.comments_count >= 50
-              ? "newsComments_countLow"
-              : "newsComments_count"
+            styles[
+              news.comments_count >= 100
+                ? "newsComments_countHigh"
+                : news.comments_count >= 50
+                ? "newsComments_countLow"
+                : "newsComments_count"
+            ]
           }
         >
           comments_count: {news.comments_count}
         </span>
-        <div className="newsUser">user: {news.user}</div>
+        <div className={styles.newsUser}>user: {news.user}</div>
       </div>
     )
   })
 
   return (
     <>
-      <div className="title">뉴스 앱</div>
+      <div className={styles.title}>뉴스 앱</div>
       <div>{render}</div>
     </>
   )
