@@ -1,0 +1,13 @@
+{
+  "title": "Movies App",
+  "itemRating": "Rating",
+  "itemRuntime": "Runtime",
+  "itemRuntimeHour": "Hour",
+  "itemRuntimeMinute": "Minute",
+  "itemGenres": "Genres",
+  "itemSummary": "Summary",
+  "sortRating": "Rating",
+  "sortDownloadCount": "DownloadCount",
+  "sortTitle": "Title",
+  "sortYear": "Year"
+}

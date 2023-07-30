@@ -1,0 +1,13 @@
+{
+  "title": "映画アプリ",
+  "itemRating": "評判",
+  "itemRuntime": "上映時間",
+  "itemRuntimeHour": "時間",
+  "itemRuntimeMinute": "分",
+  "itemGenres": "ジャンル",
+  "itemSummary": "要約",
+  "sortRating": "評判順",
+  "sortDownloadCount": "ダウンロード順",
+  "sortTitle": "タイトル順",
+  "sortYear": "年順"
+}
