@@ -9,5 +9,6 @@
   "sortRating": "평점순",
   "sortDownloadCount": "다운로드순",
   "sortTitle": "제목순",
-  "sortYear": "연도순"
+  "sortYear": "연도순",
+  "noSummary": "데이터가 없습니다."
 }

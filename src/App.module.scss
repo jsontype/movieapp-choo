@@ -1,12 +1,12 @@
 @import "./styles/global.scss";
 
 .App {
-  margin: $margin-md;
+  margin: 20px;
 }
 
 .menu {
-  padding: $margin-xs;
-  margin-right: $margin-xs;
+  text-decoration: none;
+  color: $black;
 }
 
 .logo {
@@ -14,4 +14,20 @@
   font-weight: bold;
   padding: $margin-xs;
   margin-right: $margin-xs;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: $white;
+  padding: 20px; /* Top, Right, Bottom, Left */
+}
+
+.rightButtons {
+  margin: 0 20px;
+  & > * {
+    margin-left: 3px;
+  }
 }

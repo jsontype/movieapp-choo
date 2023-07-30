@@ -9,5 +9,6 @@
   "sortRating": "Rating",
   "sortDownloadCount": "DownloadCount",
   "sortTitle": "Title",
-  "sortYear": "Year"
+  "sortYear": "Year",
+  "noSummary": "No Summary"
 }

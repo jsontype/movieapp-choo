@@ -9,5 +9,6 @@
   "sortRating": "評判順",
   "sortDownloadCount": "ダウンロード順",
   "sortTitle": "タイトル順",
-  "sortYear": "年順"
+  "sortYear": "年順",
+  "noSummary": "データがありません。"
 }
