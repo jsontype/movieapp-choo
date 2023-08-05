@@ -91,9 +91,21 @@ export default function TemporaryDrawer() {
       <Divider />
       <List>
         <div className={styles.rightButtons}>
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"en"} />
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"ko"} />
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"ja"} />
+          <ButtonLng
+            onChangeLng={onChangeLng}
+            onChangeLngArgs={"en"}
+            label={t("common:lngE")}
+          />
+          <ButtonLng
+            onChangeLng={onChangeLng}
+            onChangeLngArgs={"ko"}
+            label={t("common:lngK")}
+          />
+          <ButtonLng
+            onChangeLng={onChangeLng}
+            onChangeLngArgs={"ja"}
+            label={t("common:lngJ")}
+          />
         </div>
       </List>
     </Box>
@@ -125,9 +137,21 @@ export default function TemporaryDrawer() {
 
             {/* 오른쪽 메뉴 : 언어 변경 버튼 */}
             <div className={styles.rightButtons}>
-              <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"en"} />
-              <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"ko"} />
-              <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={"ja"} />
+              <ButtonLng
+                onChangeLng={onChangeLng}
+                onChangeLngArgs={"en"}
+                label={t("common:lngE")}
+              />
+              <ButtonLng
+                onChangeLng={onChangeLng}
+                onChangeLngArgs={"ko"}
+                label={t("common:lngK")}
+              />
+              <ButtonLng
+                onChangeLng={onChangeLng}
+                onChangeLngArgs={"ja"}
+                label={t("common:lngJ")}
+              />
             </div>
           </React.Fragment>
         ))}
