@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect, memo, useMemo } from "react"
 import { useSearchParams } from "react-router-dom"
 import styles from "./style.module.scss"
 import { useTranslation } from "react-i18next"
@@ -16,10 +16,10 @@ type MoviesItemProps = {
   large_cover_image: string
 }
 
-export default function Movies() {
+function Movies() {
   const { t } = useTranslation()
   const [searchParams] = useSearchParams()
-  const sortby = searchParams.get("sortby")
+  const sortby = useMemo(() => searchParams.get("sortby"), [searchParams])
   const [sort, setSort] = useState(sortby || "rating")
   const [movies, setMovies] = useState([])
 
@@ -40,49 +40,58 @@ export default function Movies() {
       })
   }, [sort])
 
-  const render = movies.map((item: MoviesItemProps) => {
-    return (
-      <div className={styles.movieItemContainer} key={item.id}>
-        <div className={styles.movieTextContainer}>
-          <div className={styles.movieTitle}>
-            {item.title} {item.rating >= 9 && "👍"}
+  const render = useMemo(
+    () =>
+      movies.map((item: MoviesItemProps) => {
+        return (
+          <div className={styles.movieItemContainer} key={item.id}>
+            <div className={styles.movieTextContainer}>
+              <div className={styles.movieTitle}>
+                {item.title} {item.rating >= 9 && "👍"}
+              </div>
+              <div
+                className={
+                  styles[
+                    item.rating >= 9
+                      ? "good"
+                      : item.rating >= 7
+                      ? "soso"
+                      : "bad"
+                  ]
+                }
+              >
+                {t("movies:itemRating")} : {item.rating} / 10
+              </div>
+              <div>
+                {t("movies:itemRuntime")} :{" "}
+                {parseInt(String(item.runtime / 60))}
+                {t("movies:itemRuntimeHour")} {item.runtime % 60}
+                {t("movies:itemRuntimeMinute")}
+              </div>
+              <div>
+                {t("movies:itemGenres")} : {item.genres.join(", ")}
+              </div>
+              <div>
+                {t("movies:itemSummary")} :{" "}
+                {item.summary.length < 1
+                  ? t("movies:noSummary")
+                  : item.summary.length > 100
+                  ? `${item.summary.substring(0, 99)} ...`
+                  : item.summary}
+              </div>
+            </div>
+            <div className={styles.movieImageContainer}>
+              <img
+                className={styles.movieImage}
+                src={item.large_cover_image}
+                alt={item.summary}
+              />
+            </div>
           </div>
-          <div
-            className={
-              styles[
-                item.rating >= 9 ? "good" : item.rating >= 7 ? "soso" : "bad"
-              ]
-            }
-          >
-            {t("movies:itemRating")} : {item.rating} / 10
-          </div>
-          <div>
-            {t("movies:itemRuntime")} : {parseInt(String(item.runtime / 60))}
-            {t("movies:itemRuntimeHour")} {item.runtime % 60}
-            {t("movies:itemRuntimeMinute")}
-          </div>
-          <div>
-            {t("movies:itemGenres")} : {item.genres.join(", ")}
-          </div>
-          <div>
-            {t("movies:itemSummary")} :{" "}
-            {item.summary.length < 1
-              ? t("movies:noSummary")
-              : item.summary.length > 100
-              ? `${item.summary.substring(0, 99)} ...`
-              : item.summary}
-          </div>
-        </div>
-        <div className={styles.movieImageContainer}>
-          <img
-            className={styles.movieImage}
-            src={item.large_cover_image}
-            alt={item.summary}
-          />
-        </div>
-      </div>
-    )
-  })
+        )
+      }),
+    [movies, t]
+  )
 
   return (
     <>
@@ -120,3 +129,5 @@ export default function Movies() {
     </>
   )
 }
+
+export default memo(Movies)

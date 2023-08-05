@@ -1,4 +1,5 @@
 import styles from "./style.module.scss"
+import { memo } from "react"
 import { useTranslation } from "react-i18next"
 
 type CounterProps = {
@@ -6,7 +7,7 @@ type CounterProps = {
   setCount: (count: number) => void
 }
 
-export default function Counter({ count, setCount }: CounterProps) {
+function Counter({ count, setCount }: CounterProps) {
   const { t } = useTranslation()
 
   return (
@@ -18,3 +19,5 @@ export default function Counter({ count, setCount }: CounterProps) {
     </>
   )
 }
+
+export default memo(Counter)
