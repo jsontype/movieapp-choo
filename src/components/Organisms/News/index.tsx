@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState, memo, useMemo } from "react"
 import styles from "./style.module.scss"
 import { useTranslation } from "react-i18next"
 
@@ -9,7 +9,7 @@ type NewsItemProps = {
   user: string
 }
 
-export default function News() {
+function News() {
   const { t } = useTranslation()
 
   const [newsList, setNewsList] = useState([])
@@ -20,38 +20,40 @@ export default function News() {
       .then((json) => setNewsList(json))
   }, [])
 
-  console.log(newsList)
-
-  const render = newsList.map((news: NewsItemProps, index: number) => {
-    return (
-      <div key={index}>
-        <a
-          href={news.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.newsTitle}
-        >
-          {news.title}
-        </a>
-        <span
-          className={
-            styles[
-              news.comments_count >= 100
-                ? "newsComments_countHigh"
-                : news.comments_count >= 50
-                ? "newsComments_countLow"
-                : "newsComments_count"
-            ]
-          }
-        >
-          {t("news:itemCommentsCount")}: {news.comments_count}
-        </span>
-        <div className={styles.newsUser}>
-          {t("news:itemUser")}: {news.user}
-        </div>
-      </div>
-    )
-  })
+  const render = useMemo(
+    () =>
+      newsList.map((news: NewsItemProps, index: number) => {
+        return (
+          <div key={index}>
+            <a
+              href={news.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.newsTitle}
+            >
+              {news.title}
+            </a>
+            <span
+              className={
+                styles[
+                  news.comments_count >= 100
+                    ? "newsComments_countHigh"
+                    : news.comments_count >= 50
+                    ? "newsComments_countLow"
+                    : "newsComments_count"
+                ]
+              }
+            >
+              {t("news:itemCommentsCount")}: {news.comments_count}
+            </span>
+            <div className={styles.newsUser}>
+              {t("news:itemUser")}: {news.user}
+            </div>
+          </div>
+        )
+      }),
+    [newsList, t]
+  )
 
   return (
     <>
@@ -60,3 +62,5 @@ export default function News() {
     </>
   )
 }
+
+export default memo(News)
