@@ -27,7 +27,7 @@
 
 .rightButtons {
   margin: 0 20px;
-  & > * {
+  & > :not(:first-child) {
     margin-left: 3px;
   }
 }

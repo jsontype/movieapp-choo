@@ -6,11 +6,13 @@ import { FaFlagUsa, FaFlag } from "react-icons/fa"
 type ButtonProps = {
   onChangeLng: any
   onChangeLngArgs: string
+  label: string
 }
 
 export default function ButtonLng({
   onChangeLng,
   onChangeLngArgs,
+  label,
 }: ButtonProps) {
   // 국기 아이콘 렌더링
   const renderIcon = () => {
@@ -33,8 +35,10 @@ export default function ButtonLng({
       variant="contained"
       className={styles.buttonPrimary}
       startIcon={renderIcon()} // 아이콘을 추가합니다.
+      sx={{ fontSize: "10%" }}
     >
-      {onChangeLngArgs}
+      {/* {onChangeLngArgs} */}
+      {label}
     </MuiButton>
   )
 }
