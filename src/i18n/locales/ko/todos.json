@@ -1,4 +1,5 @@
 {
   "title": "할일 앱",
-  "itemPlaceholder": "할일을 입력하세요"
+  "itemPlaceholder": "할일을 입력하세요",
+  "itemEnter": "송신"
 }

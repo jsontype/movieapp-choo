@@ -8,6 +8,8 @@ import {
 } from "react"
 import styles from "./style.module.scss"
 import { useTranslation } from "react-i18next"
+import TextField from "@mui/material/TextField"
+import Button from "@mui/material/Button"
 
 type TodosItemProps = {
   id: number
@@ -97,13 +99,20 @@ function Todos() {
       {" "}
       <div className={styles.title}>{t("todos:title")}</div>
       <form onSubmit={onCreate}>
-        <input
-          type="text"
+        <TextField
+          hiddenLabel
+          id="filled-hidden-label-normal"
+          defaultValue="Small"
+          variant="filled"
           value={text}
           onChange={onChange}
           placeholder={t("todos:itemPlaceholder")}
+          size="small"
+          sx={{ width: "100%", maxWidth: "13em" }}
         />
-        <input type="submit" value="Enter"></input>
+        <Button type="submit" variant="contained" sx={{ height: "3em" }}>
+          {t("todos:itemEnter")}
+        </Button>
       </form>
       <div>{render}</div>
     </>

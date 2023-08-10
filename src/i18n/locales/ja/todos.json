@@ -1,4 +1,5 @@
 {
   "title": "やることリストアプリ",
-  "itemPlaceholder": "やることを入力してください"
+  "itemPlaceholder": "やることを入力してください",
+  "itemEnter": "送信"
 }

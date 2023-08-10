@@ -1,4 +1,5 @@
 {
   "title": "Todos App",
-  "itemPlaceholder": "Add a new todo"
+  "itemPlaceholder": "Add a new todo",
+  "itemEnter": "Send"
 }
