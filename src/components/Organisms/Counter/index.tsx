@@ -1,6 +1,7 @@
 import styles from "./style.module.scss"
 import { memo } from "react"
 import { useTranslation } from "react-i18next"
+import Button from "@mui/material/Button"
 
 type CounterProps = {
   count: number
@@ -14,8 +15,12 @@ function Counter({ count, setCount }: CounterProps) {
     <>
       <div className={styles.title}>{t("counter:title")}</div>
       <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button onClick={() => setCount(count - 1)}>-</button>
+      <Button onClick={() => setCount(count + 1)} variant="outlined">
+        +
+      </Button>
+      <Button onClick={() => setCount(count - 1)} variant="outlined">
+        -
+      </Button>
     </>
   )
 }
