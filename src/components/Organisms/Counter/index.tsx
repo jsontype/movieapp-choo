@@ -14,7 +14,7 @@ function Counter({ count, onIncrease, onDecrease }: CounterProps) {
   return (
     <>
       <div className={styles.title}>{t('counter:title')}</div>
-      <h1>{count}</h1>
+      <div>페이지당 표시게시물 수 : {count}</div>
       <button onClick={onIncrease}>+</button>
       <button onClick={onDecrease}>-</button>
     </>

@@ -2,6 +2,9 @@ import { useState, SetStateAction, memo, useCallback, useMemo } from 'react'
 import styles from './style.module.scss'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+// MUI
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 type TodosProps = {
   todos: TodosItemProps[]
@@ -20,12 +23,18 @@ type TodosItemProps = {
 function Todos({ todos, onCreate, onCompleted, onDelete }: TodosProps) {
   const { t } = useTranslation()
 
+  const [currentPage, setCurrentPage] = useState(1)
   const [input, setInput] = useState('')
 
   const count = useSelector(
     // Global State를 조회할 때에는 state의 타입을 RootState로 지정해야 한다.
     (state: any) => state.counter.count,
   )
+
+  // 페이지가 변경될 때 실행되는 함수
+  const onPageChange = (e: React.ChangeEvent<unknown>, value: number) => {
+    setCurrentPage(value)
+  }
 
   const onSubmit = useCallback(
     (e: { preventDefault: () => void }) => {
@@ -43,9 +52,14 @@ function Todos({ todos, onCreate, onCompleted, onDelete }: TodosProps) {
     [setInput],
   )
 
+  // 현재 페이지에 해당하는 게시물만 렌더링
+  const startIndex = (currentPage - 1) * count
+  const endIndex = startIndex + count
+  const currentTodos = todos.slice(startIndex, endIndex)
+
   const render = useMemo(
     () =>
-      todos.map((item: TodosItemProps) => {
+      currentTodos.map((item: TodosItemProps) => {
         return (
           <div key={item.id}>
             <span>
@@ -56,7 +70,7 @@ function Todos({ todos, onCreate, onCompleted, onDelete }: TodosProps) {
           </div>
         )
       }),
-    [onCompleted, onDelete, todos],
+    [onCompleted, onDelete, currentTodos],
   )
 
   return (
@@ -74,6 +88,13 @@ function Todos({ todos, onCreate, onCompleted, onDelete }: TodosProps) {
         <input type="submit" value="Enter"></input>
       </form>
       <div>{render}</div>
+      <Stack spacing={2} className={styles.pagination}>
+        <Pagination
+          count={Math.ceil(todos.length / count)}
+          page={currentPage}
+          onChange={onPageChange}
+        />
+      </Stack>
       <h6>페이지 당 게시물 수: {count}</h6>
     </>
   )

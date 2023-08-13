@@ -8,7 +8,7 @@ export const decrease = () => ({ type: DECREASE })
 
 // 초기값
 const initialState = {
-  count: 0,
+  count: 5,
 }
 
 // 리듀서
