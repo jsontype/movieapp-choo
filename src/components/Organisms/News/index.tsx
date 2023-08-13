@@ -1,6 +1,6 @@
-import { useEffect, useState, memo, useMemo } from "react"
-import styles from "./style.module.scss"
-import { useTranslation } from "react-i18next"
+import { useEffect, useState, memo, useMemo } from 'react'
+import styles from './style.module.scss'
+import { useTranslation } from 'react-i18next'
 
 type NewsItemProps = {
   url: string
@@ -15,9 +15,9 @@ function News() {
   const [newsList, setNewsList] = useState([])
 
   useEffect(() => {
-    fetch("https://api.hnpwa.com/v0/news.json")
-      .then((res) => res.json())
-      .then((json) => setNewsList(json))
+    fetch('https://api.hnpwa.com/v0/news.json')
+      .then(res => res.json())
+      .then(json => setNewsList(json))
   }, [])
 
   const render = useMemo(
@@ -37,27 +37,27 @@ function News() {
               className={
                 styles[
                   news.comments_count >= 100
-                    ? "newsComments_countHigh"
+                    ? 'newsComments_countHigh'
                     : news.comments_count >= 50
-                    ? "newsComments_countLow"
-                    : "newsComments_count"
+                    ? 'newsComments_countLow'
+                    : 'newsComments_count'
                 ]
               }
             >
-              {t("news:itemCommentsCount")}: {news.comments_count}
+              {t('news:itemCommentsCount')}: {news.comments_count}
             </span>
             <div className={styles.newsUser}>
-              {t("news:itemUser")}: {news.user}
+              {t('news:itemUser')}: {news.user}
             </div>
           </div>
         )
       }),
-    [newsList, t]
+    [newsList, t],
   )
 
   return (
     <>
-      <div className={styles.title}>{t("news:title")}</div>
+      <div className={styles.title}>{t('news:title')}</div>
       <div>{render}</div>
     </>
   )
