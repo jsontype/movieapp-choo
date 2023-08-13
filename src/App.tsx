@@ -17,6 +17,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import styles from './App.module.scss'
 import i18n from 'i18next'
 import ButtonLng from './components/Atoms/ButtonLng'
+import ButtonLngs from './components/Molecules/ButtonLngs'
 import MovieFilterIcon from '@mui/icons-material/MovieFilter'
 import ChecklistIcon from '@mui/icons-material/Checklist'
 import ArticleIcon from '@mui/icons-material/Article'
@@ -90,9 +91,7 @@ export default function TemporaryDrawer() {
       <Divider />
       <List>
         <div className={styles.rightButtons}>
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={'en'} label={t('common:lngE')} />
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={'ko'} label={t('common:lngK')} />
-          <ButtonLng onChangeLng={onChangeLng} onChangeLngArgs={'ja'} label={t('common:lngJ')} />
+          <ButtonLngs onChangeLng={onChangeLng} />
         </div>
       </List>
     </Box>
@@ -118,7 +117,8 @@ export default function TemporaryDrawer() {
 
             {/* 오른쪽 메뉴 : 언어 변경 버튼 */}
             <div className={styles.rightButtons}>
-              <ButtonLng
+              <ButtonLngs onChangeLng={onChangeLng} />
+              {/* <ButtonLng
                 onChangeLng={onChangeLng}
                 onChangeLngArgs={'en'}
                 label={t('common:lngE')}
@@ -132,7 +132,7 @@ export default function TemporaryDrawer() {
                 onChangeLng={onChangeLng}
                 onChangeLngArgs={'ja'}
                 label={t('common:lngJ')}
-              />
+              />*/}
             </div>
           </React.Fragment>
         ))}
