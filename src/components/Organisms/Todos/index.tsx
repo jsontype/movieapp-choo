@@ -1,6 +1,14 @@
 import { useState, SetStateAction, memo, useCallback, useMemo } from 'react'
 import styles from './style.module.scss'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+
+type TodosProps = {
+  todos: TodosItemProps[]
+  onCreate: (title: string) => { type: string }
+  onCompleted: (id: number) => { type: string }
+  onDelete: (id: number) => { type: string }
+}
 
 type TodosItemProps = {
   id: number
@@ -9,50 +17,30 @@ type TodosItemProps = {
   userId: 1
 }
 
-function Todos() {
+function Todos({ todos, onCreate, onCompleted, onDelete }: TodosProps) {
   const { t } = useTranslation()
 
-  const [todos, setTodos] = useState([])
-  const [text, setText] = useState('')
+  const [input, setInput] = useState('')
 
-  const onClick = useCallback(
-    (id: number) => {
-      const result: any = todos.map((item: TodosItemProps) => {
-        if (item.id === id) {
-          item.completed = !item.completed
-        }
-        return item
-      })
-      setTodos(result)
-    },
-    [todos],
+  const count = useSelector(
+    // Global State를 조회할 때에는 state의 타입을 RootState로 지정해야 한다.
+    (state: any) => state.counter.count,
   )
 
-  const onDelete = useCallback(
-    (id: number) => {
-      const result = todos.filter((item: TodosItemProps) => item.id !== id)
-      setTodos(result)
-    },
-    [todos],
-  )
-
-  const onChange = useCallback((e: { target: { value: SetStateAction<string> } }) => {
-    setText(e.target.value)
-  }, [])
-
-  const onCreate = useCallback(
+  const onSubmit = useCallback(
     (e: { preventDefault: () => void }) => {
       e.preventDefault()
-      const newTodo: TodosItemProps = {
-        id: todos.length + 1,
-        title: text,
-        completed: false,
-        userId: 1,
-      }
-      const result: any = [...todos, newTodo]
-      setTodos(result)
+      onCreate(input)
+      setInput('')
     },
-    [text, todos],
+    [input, setInput, onCreate],
+  )
+
+  const onChange = useCallback(
+    (e: { target: { value: SetStateAction<string> } }) => {
+      setInput(e.target.value)
+    },
+    [setInput],
   )
 
   const render = useMemo(
@@ -62,29 +50,31 @@ function Todos() {
           <div key={item.id}>
             <span>
               # {item.id} / {item.title} /
-              <span onClick={() => onClick(item.id)}>{item.completed ? '✅' : '[TODO]'}</span>
+              <span onClick={() => onCompleted(item.id)}>{item.completed ? '✅' : '[TODO]'}</span>
               <span onClick={() => onDelete(item.id)}>🗑️</span>
             </span>
           </div>
         )
       }),
-    [onClick, onDelete, todos],
+    [onCompleted, onDelete, todos],
   )
 
   return (
     <>
       {' '}
       <div className={styles.title}>{t('todos:title')}</div>
-      <form onSubmit={onCreate}>
+      <form onSubmit={onSubmit}>
         <input
+          name="todo"
           type="text"
-          value={text}
+          value={input}
           onChange={onChange}
           placeholder={t('todos:itemPlaceholder')}
         />
         <input type="submit" value="Enter"></input>
       </form>
       <div>{render}</div>
+      <h6>페이지 당 게시물 수: {count}</h6>
     </>
   )
 }

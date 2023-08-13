@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
-import Counter from './index'
+import Counter from './Container'
 
 // Mocking the useTranslation hook from react-i18next
 jest.mock('react-i18next', () => ({
@@ -13,13 +13,13 @@ jest.mock('react-i18next', () => ({
 
 describe('<Counter />', () => {
   it('renders the initial count', () => {
-    const { getByText } = render(<Counter count={5} setCount={() => {}} />)
+    const { getByText } = render(<Counter />)
     expect(getByText('5')).toBeInTheDocument()
   })
 
   it('increments the count', () => {
     const mockSetCount = jest.fn()
-    const { getByText } = render(<Counter count={5} setCount={mockSetCount} />)
+    const { getByText } = render(<Counter />)
 
     fireEvent.click(getByText('+'))
     expect(mockSetCount).toHaveBeenCalledWith(6)
@@ -27,14 +27,14 @@ describe('<Counter />', () => {
 
   it('decrements the count', () => {
     const mockSetCount = jest.fn()
-    const { getByText } = render(<Counter count={5} setCount={mockSetCount} />)
+    const { getByText } = render(<Counter />)
 
     fireEvent.click(getByText('-'))
     expect(mockSetCount).toHaveBeenCalledWith(4)
   })
 
   it('renders the translated title', () => {
-    const { getByText } = render(<Counter count={5} setCount={() => {}} />)
+    const { getByText } = render(<Counter />)
     expect(getByText('counter:title')).toBeInTheDocument()
   })
 })
