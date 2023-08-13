@@ -73,7 +73,8 @@ export default function TemporaryDrawer() {
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
-      onKeyDown={toggleDrawer(anchor, false)}>
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
       <List onClick={toggleDrawer(anchor, false)}>
         {menuItems.map(item => (
           <ListItem key={item.text} disablePadding>
