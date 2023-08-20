@@ -3,7 +3,7 @@ import MuiButton from '@mui/material/Button'
 import styles from './style.module.scss'
 import { FaFlagUsa, FaFlag } from 'react-icons/fa'
 
-type ButtonProps = {
+export type ButtonProps = {
   onChangeLng: any
   onChangeLngArgs: string
   label: string

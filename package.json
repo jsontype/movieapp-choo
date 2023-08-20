@@ -39,12 +39,15 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -60,9 +63,24 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/preset-create-react-app": "^7.2.3",
+    "@storybook/react": "^7.2.3",
+    "@storybook/react-webpack5": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.46.0",
+    "eslint-plugin-storybook": "^0.6.13",
     "gh-pages": "^5.0.0",
     "jest-watch-typeahead": "^0.6.5",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.1",
+    "prop-types": "^15.8.1",
+    "sb": "^7.2.3",
+    "storybook": "^7.2.3",
+    "webpack": "^5.88.2"
   }
 }
