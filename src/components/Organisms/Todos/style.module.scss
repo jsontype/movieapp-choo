@@ -5,3 +5,10 @@
   font-size: $font-lg;
   font-weight: bold;
 }
+
+.pagination {
+  margin-top: $margin-xs;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

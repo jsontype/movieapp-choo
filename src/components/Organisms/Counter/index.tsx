@@ -4,18 +4,19 @@ import { useTranslation } from 'react-i18next'
 
 type CounterProps = {
   count: number
-  setCount: (count: number) => void
+  onIncrease: () => { type: string }
+  onDecrease: () => { type: string }
 }
 
-function Counter({ count, setCount }: CounterProps) {
+function Counter({ count, onIncrease, onDecrease }: CounterProps) {
   const { t } = useTranslation()
 
   return (
     <>
       <div className={styles.title}>{t('counter:title')}</div>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button onClick={() => setCount(count - 1)}>-</button>
+      <div>페이지당 표시게시물 수 : {count}</div>
+      <button onClick={onIncrease}>+</button>
+      <button onClick={onDecrease}>-</button>
     </>
   )
 }

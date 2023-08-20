@@ -10,9 +10,9 @@ import ListItemText from '@mui/material/ListItemText'
 import { useTranslation } from 'react-i18next'
 import React, { useState } from 'react'
 import Movies from './components/Organisms/Movies'
-import Todos from './components/Organisms/Todos'
+import Todos from './components/Organisms/Todos/Container'
 import News from './components/Organisms/News'
-import Counter from './components/Organisms/Counter'
+import Counter from './components/Organisms/Counter/Container'
 import { Routes, Route, Link } from 'react-router-dom'
 import styles from './App.module.scss'
 import i18n from 'i18next'
@@ -145,7 +145,7 @@ export default function TemporaryDrawer() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/todos" element={<Todos />} />
           <Route path="/news" element={<News />} />
-          <Route path="/counter" element={<Counter count={count} setCount={setCount} />} />
+          <Route path="/counter" element={<Counter />} />
         </Routes>
       </div>
     </>
